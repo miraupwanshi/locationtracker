@@ -1,14 +1,14 @@
-# Use official OpenJDK image
-FROM openjdk:17-jdk-slim
+FROM openjdk:17
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy everything from project into the container
 COPY . .
 
-# Build the project inside the container
+# 🔧 Add execute permission for mvnw
+RUN chmod +x mvnw
+
+# 🔨 Build the project
 RUN ./mvnw package -DskipTests
 
-# Run the application
+# 🔄 Run the app (adjust as needed)
 CMD ["java", "-jar", "target/LocationVehicle-0.0.1-SNAPSHOT.jar"]
